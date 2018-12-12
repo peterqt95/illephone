@@ -1,0 +1,37 @@
+<div class="container">
+  <mat-table [dataSource]="games">
+    <ng-container matColumnDef="roomId">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let game">{{game.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="roomName">
+      <mat-header-cell *matHeaderCellDef> Room Name </mat-header-cell>
+      <mat-cell *matCellDef="let game">{{game.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="roomNumPlayers">
+      <mat-header-cell *matHeaderCellDef> Players </mat-header-cell>
+      <mat-cell *matCellDef="let game">{{game.currentNumPlayers}}/{{game.maxPlayers}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="roomTimeLimit">
+      <mat-header-cell *matHeaderCellDef> Time/round (s) </mat-header-cell>
+      <mat-cell *matCellDef="let game">{{game.timeLimit}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="roomPassword">
+      <mat-header-cell *matHeaderCellDef> Password </mat-header-cell>
+      <mat-cell *matCellDef="let game">None</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let game; columns: displayedColumns;" (click)="joinGame(game, roomFullModal)"></mat-row>
+  </mat-table>
+</div>
+
+<!-- Modal Window Component -->
+<ng-template #roomFullModal>
+  <h4 mat-dialog-title>Unable to Join</h4>
+  <mat-dialog-content>
+    <p>The room you're trying to join is already full. Try joining another room or creating your own!</p>
+  </mat-dialog-content>
+  <mat-dialog-actions style="float: right">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-template>

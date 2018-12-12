@@ -1,0 +1,58 @@
+<div class="gameroom" *ngIf="dataLoaded">
+  <!-- Canvas component for drawing/guessing -->
+  <game-canvas></game-canvas>
+  <div class="right-sidebar">
+    <!-- Show currently connected players and their status? -->
+    <div class="status-box">
+      <div id="room-name-header" class="text-center">
+        <h6>{{game.name}}</h6>
+      </div>
+      <!-- Ready button -->
+      <div id="ready-button" *ngIf="showReadyButton" [class.selected]="playerReady" (click)="onReady()">
+          <span>Ready</span>
+      </div>
+      <!-- Creating a 'card component' to show users in current game -->
+      <div id="user-window" class="custom-scroll" [ngStyle]="{'height': showReadyButton ? 'calc(100% - 70px)' : 'calc(100% - 35px)'}">
+        <div class="user-card" *ngFor="let user of users" [ngClass]="{'user-ready-border' : user.status === 'Ready', 'user-not-ready-border' : user.status === 'Not Ready'}">
+          <span [ngStyle]="{'color': user.color}">{{user.name}}</span>
+          <span class="user-status">{{user.status}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- Show messages from players and game info?-->
+    <div class="message-box">
+      <div #chatPanel class="custom-scroll">
+        <div class="message-line system-message">
+          You have joined <strong>{{game.name}}</strong>.
+        </div>
+        <div class="message-line" *ngFor="let message of messages">
+          <span [ngStyle]="{'color': message.user.color}" *ngIf="message.src === 'client'">
+            <strong>{{message.user.name}}:</strong>
+          </span> 
+          <span [ngClass]="{'system-message': message.src === 'server', 'game-message': message.src ==='game'}">{{message.text}}</span>
+        </div>
+      </div>
+    </div>
+    <!-- Chat box and options -->
+    <div class="chat-box">
+      <div id="chat-message">
+        <textarea class="custom-scroll" placeholder="Send a message..." [(ngModel)]="msg" (keyup.enter)="sendMessage()"></textarea>
+      </div>
+      <div id="chat-icon">
+          <button mat-raised-button color="primary" (click)="sendMessage()">Chat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Window Component ; Should probably make a new component/service for creating modals quickly instead of throwing these into html.
+ Makes code a lot cleaner and improves reusability. TODO - Brian 7/1/2018 -->
+<ng-template #roomFullModal>
+  <h4 mat-dialog-title>Unable to Join</h4>
+  <mat-dialog-content>
+    <p>The room you're trying to join is already full. Try joining another room or creating your own!</p>
+  </mat-dialog-content>
+  <mat-dialog-actions style="float: right">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-template>

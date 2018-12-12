@@ -1,0 +1,41 @@
+<!-- Modal Window Component -->
+<ng-template #content>
+  <h4 mat-dialog-title>Create Game Room</h4>
+  <mat-dialog-content>
+    <mat-form-field>
+      <input matInput type="text" id="room-name" placeholder="Room Name" matTooltip="Specifies the name people see to join your room!" 
+        matTooltipPosition="right" [(ngModel)]="roomProps.name" name="roomName" required minlength="3" maxlength="30">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" id="max-players" placeholder="Max Players" value="8" min="4" max="12" matTooltip="You can have this many players in your game!"
+        matTooltipPosition="right" [(ngModel)]="roomProps.maxPlayers" name="maxPlayers" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select type="text" id="time-limit" placeholder="Time Limit" matTooltip="Time per round to draw and guess!" 
+        matTooltipPosition="right" [(value)]="roomProps.timeLimit" required>
+        <mat-option *ngFor="let timeOption of timeOptions" [value]="timeOption.value">{{timeOption.time}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-form-field>
+        <mat-select type="text" id="category" placeholder="Category" matTooltip="Category of the game!"
+          matTooltipPosition="right" [(value)]="roomProps.category" required>
+          <mat-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" id="password-input" placeholder="Password (optional)" matTooltip="If you want to keep things private!"
+        matTooltipPosition="right" [(ngModel)]="roomProps.password" name="roomPassword">
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions style="float: right">
+    <button mat-raised-button color="warn" mat-dialog-close (click)="setDefaultRoomProperties()">Close</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="createGame(roomProps)">Create</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<div id="main-screen" class="container text-center">
+  <h1>{{title}}</h1>
+  <p>Some kind of small description can go here.</p>
+  <a class="btn btn-lg btn-primary main-option" routerLink="/room" routerLinkActive="active">Join Game</a>
+  <button class="btn btn-lg btn-secondary main-option" (click)="open(content); setDefaultRoomProperties()">Create Room</button>
+</div>

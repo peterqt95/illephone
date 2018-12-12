@@ -1,0 +1,4 @@
+<mat-form-field>
+  <input matInput name="username" [(ngModel)]="data.username" (keyup.enter)="onSave()" [formControl]="usernameFormControl">
+  <mat-hint><strong>Enter your username</strong></mat-hint>
+</mat-form-field>

@@ -1,0 +1,11 @@
+#roomBorder {
+    border: 1px solid red;
+    margin: 0 auto;
+    width: 50%;
+    height: 500px;
+}
+
+/* adding styles to some classes of mat table components */
+.mat-row:hover {
+    background-color: pink;
+}

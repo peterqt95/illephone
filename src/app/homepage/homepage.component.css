@@ -1,0 +1,14 @@
+#main-screen {
+    margin-top: 40px;
+}
+
+.main-option {
+    display: block !important;
+    margin: 5px auto;
+    width: 200px;
+}
+
+/* overwriting form elements display */
+.mat-form-field {
+    display: block !important;
+}

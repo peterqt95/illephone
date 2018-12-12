@@ -1,0 +1,25 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<ng-template #content>
+  <h4 mat-dialog-title>Drawings and Guesses</h4>
+  <mat-dialog-content>
+    <span>Below are drawings and guesses that other players had based off of the word you drew. 
+      Select your favorite <strong>drawing</strong> and <strong>guess</strong>!
+    </span>
+    <div *ngIf="currentImage">
+      <img class="user-image" [class.selected]="currentImageSelected" src={{currentImage.src}} (click)="selectImage()">
+      <div class="user-guess" [class.selected]="currentGuessSelected" (click)="selectGuess()">Guess: {{currentGuess}}</div>
+    </div>
+    <!-- Navigation arrows -->
+    <div id="footer-nav">
+      <div class="arrow-back" (click)=nextBoardDisplay(false)><i class="material-icons md-48">chevron_left</i></div>
+      <div class="arrow-forward" (click)=nextBoardDisplay(true)><i class="material-icons md-48">chevron_right</i></div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions style="float: right">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<div>
+  <button mat-raised-button color="primary" (click)="open(content); displayImageAndGuess()">View Drawings</button>
+</div>

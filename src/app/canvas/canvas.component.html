@@ -1,0 +1,47 @@
+<div id="game-screen">
+    <div id="game-info">
+        <div id="game-state">
+            <span>{{currentTime}}</span>
+            <span>{{gameStateString.toUpperCase()}}</span>
+        </div>
+        <div id="game-state-description" [ngClass]="{'hide': gameStateString === 'DELAY'}">
+            <span *ngIf="gameStateString === 'LOBBY'">Let others know you're ready by clicking 'Ready'.</span>
+            <span *ngIf="gameStateString === 'DRAW'">Draw the word that's shown.</span>
+            <span *ngIf="gameStateString === 'GUESS'">What do you think the other player drew? Take your best guess!</span>
+            <span *ngIf="gameStateString === 'JUDGE'">Pick your favorite drawings and guesses!</span>
+        </div>
+        <div id="game-state-actions" [ngClass]="{'hide': gameStateString !== 'DRAW' && gameStateString !== 'GUESS' && gameStateString !== 'JUDGE'}">
+            <span *ngIf="gameStateString === 'DRAW'" >{{guess}}</span>
+            <span *ngIf="gameStateString === 'GUESS'" >
+                <mat-form-field>
+                    <input matInput placeholder="Guess" #userGuess (keyup.enter)="lockGuess(userGuess.value); userGuess.value=''" maxlength="32">
+                    <mat-hint>Type in guess and press <strong>Enter</strong></mat-hint>
+                </mat-form-field>
+            </span>
+            <span *ngIf="gameStateString === 'JUDGE'">
+                <judge-window [illephoneBoard]="illephoneBoard"></judge-window>
+            </span>
+        </div>
+    </div>
+    <span id="winner-name" *ngIf="isWinnerSet">
+        The Winner is: {{winnerName}}
+    </span>
+    <span id="guess-input" *ngIf="guess && gameStateString === 'GUESS'">
+        Your guess is <br>
+        <strong>{{guess}}</strong>
+    </span>
+    <div id="canvas-options" [ngClass]="{'active': showCanvasOptions}">
+        <div id="canvas-options-icon" (click)="toggleCanvasOptions()">
+            <i class="fa fa-paint-brush" aria-hidden="true"></i>
+        </div>
+        <div id="canvas-size-slider">
+            <h6>Brush Size {{brushWidth}}/50</h6>
+            <input type="range" min="4" max="50" value="4" class="slider" [(ngModel)]="brushWidth" (change)="setBrushWidth()">
+        </div>
+        <div id="canvas-color-palette">
+            <h6>Brush Color</h6>
+            <div class="color-option" *ngFor="let color of colors" [style.background-color]="color" (click)="setBrushColor(color)"></div>
+        </div>
+    </div>
+    <canvas #canvas></canvas>
+</div>

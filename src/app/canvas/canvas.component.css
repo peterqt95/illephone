@@ -1,0 +1,189 @@
+#game-screen {
+    width: 100%;
+    height: 100%;
+    padding: 1px 0px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    min-width: 900px;
+}
+
+#game-info {
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+
+#game-info > div {
+    display: inline-block;
+    position: relative;
+    background-color: #f8f8f8;
+    color: #444;
+    text-align: center;
+    padding: 10px;
+    vertical-align: top;
+    -webkit-transition: transform .5s ease;
+    -o-transition: transform .5s ease;
+    transition: transform .5s ease;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+#game-info > div.hide{
+    transform: translateY(-110px);
+    -ms-transform: translateY(-110px);
+    -o-transform: translateY(-110px);
+    -webkit-transform: translateY(-110px);
+}
+
+#game-info > div > span {
+    display: block;
+}
+
+#game-state {
+    width: 100px;
+    height: 75px;
+}
+
+#game-state-description {
+    left: 20px;
+    width: 200px;
+    min-height: 75px;
+    max-height: 110px;
+}
+
+#game-state-actions {
+    left: 40px;
+    width: 200px;
+    min-height: 75px;
+    max-height: 110px;
+    font-style: italic;
+}
+
+#guess-input {
+    color: green;
+    position: absolute;
+    font-size: 24px;
+    width: 300px;
+    left: 575px;
+    top: 0;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+#winner-name {
+    color: green;
+    position: absolute;
+    font-size: 24px;
+    width: 300px;
+    left: 575px;
+    top: 0;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+
+#canvas-options {
+    position: fixed;
+    width: 265px;
+    top: 115px;
+    left: -265px;
+    background-color: #f8f8f8;
+    color: #444;
+    padding: 10px;
+    box-shadow: 0px 4px 5px rgb(0,0,0,.3);
+    border-radius: 0px 3px 3px 0px;
+    -webkit-transition: transform .5s ease;
+    -o-transition: transform .5s ease;
+    transition: transform .5s ease;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+#canvas-options.active {
+    transform: translateX(265px);
+    -ms-transform: translateX(265px);
+    -o-transform: translateX(265px);
+    -webkit-transform: translateX(265px);
+}
+
+#canvas-options-icon {
+    position: absolute;
+    top: 20px;
+    left: 265px;
+    background-color: #f8f8f8;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+}
+
+#canvas-options-icon > i {
+    font-size: 1.5rem;
+}
+
+#canvas-color-palette{
+    width: 245px;
+}
+
+.color-option{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 1px;
+    border: 0.5px solid #ccc;
+}
+
+.color-option:hover{
+    border: 2px solid lightgray;
+    cursor: pointer;
+}
+
+#canvas-size-slider{
+    width: 245px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 50%; 
+    background: #00BFFF; /* skyblue background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 50%; 
+    background: #00BFFF; /* skyblue background */
+    cursor: pointer; /* Cursor on hover */
+}

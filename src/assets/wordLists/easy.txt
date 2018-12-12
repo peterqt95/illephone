@@ -1,0 +1,11 @@
+apple
+bannana
+dog
+potato
+cat
+cow
+cabbage
+horse
+octopus
+squid
+raspberry
